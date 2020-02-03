@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {CellSize, CellType} from 'config/constants';
+import { CellSize, CellType } from 'config/constants';
 
-export const Cell = styled(({type, ...props}) => <div {...props} />)`
+export const Cell = styled(({ type, ...props }) => <div {...props} />)`
   align-items: center;
   background: #c2b280;
   box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.1);

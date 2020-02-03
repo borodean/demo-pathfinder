@@ -1,8 +1,8 @@
-import React, {FunctionComponent} from 'react';
+import React, { FunctionComponent } from 'react';
 
-import {CellType} from 'config/constants';
+import { CellType } from 'config/constants';
 
-import {Cell} from './styles';
+import { Cell } from './styles';
 
 type Props = {
   type?: CellType;

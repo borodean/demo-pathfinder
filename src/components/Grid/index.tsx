@@ -1,8 +1,8 @@
-import React, {FunctionComponent} from 'react';
+import React, { FunctionComponent } from 'react';
 
-import {CellType} from 'config/constants';
+import { CellType } from 'config/constants';
 
-import {Cell, Grid} from './styles';
+import { Cell, Grid } from './styles';
 
 const GridComponent: FunctionComponent = () => {
   return (
