@@ -1,15 +1,18 @@
-import React, {FunctionComponent} from 'react';
+import React, { FunctionComponent } from 'react';
 
-import {CellType} from 'config/constants';
+import { CellType } from 'config/constants';
 
-import {Cell, Palette} from './styles';
+import { Cell, Palette } from './styles';
 
 interface Props {
   currentType: CellType;
-  selectCellType(type: CellType): void;
+  onCellClick(cellType: CellType): any;
 }
 
-const PaletteComponent: FunctionComponent<Props> = ({currentType, selectCellType}) => {
+const PaletteComponent: FunctionComponent<Props> = ({
+  currentType,
+  onCellClick
+}) => {
   const orderedTypes = [
     CellType.Regular,
     CellType.Gravel,
@@ -23,7 +26,12 @@ const PaletteComponent: FunctionComponent<Props> = ({currentType, selectCellType
   return (
     <Palette>
       {orderedTypes.map(type => (
-        <Cell key={type} isCurrent={type === currentType} onClick={() => selectCellType(type)} type={type} />
+        <Cell
+          isCurrent={type === currentType}
+          key={type}
+          onClick={() => onCellClick(type)}
+          type={type}
+        />
       ))}
     </Palette>
   );

@@ -20,7 +20,10 @@ const App: FunctionComponent<Props> = ({ grid, palette, selectCellType }) => {
   return (
     <div>
       <Grid columns={grid.columns} />
-      <Palette currentType={palette.currentType} selectCellType={selectCellType} />
+      <Palette
+        currentType={palette.currentType}
+        onCellClick={selectCellType}
+      />
     </div>
   );
 };
