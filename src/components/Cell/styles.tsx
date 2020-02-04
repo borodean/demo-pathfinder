@@ -8,7 +8,6 @@ export const Cell = styled(({isFinish, isStart, type, ...props}) => (
 ))`
   align-items: center;
   background: #c2b280;
-  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.1);
   display: flex;
   height: ${CellSize}px;
   justify-content: center;
