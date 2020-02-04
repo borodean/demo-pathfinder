@@ -1,11 +1,13 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 
-import { CellType } from 'config/constants';
+import { Obstacle } from 'config/constants';
 
 import { Cell } from './styles';
 
 interface Props extends HTMLAttributes<HTMLElement> {
-  type?: CellType;
+  isFinish?: boolean;
+  isStart?: boolean;
+  type?: Obstacle;
 };
 
 const CellComponent: FunctionComponent<Props> = props => {
@@ -13,7 +15,7 @@ const CellComponent: FunctionComponent<Props> = props => {
 };
 
 CellComponent.defaultProps = {
-  type: CellType.Regular
+  type: Obstacle.Regular
 };
 
 export default CellComponent;

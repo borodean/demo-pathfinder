@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { CellSize, CellType } from 'config/constants';
+import { CellSize, Obstacle } from 'config/constants';
 
-export const Cell = styled(({ type, ...props }) => <div {...props} />)`
+export const Cell = styled(({isFinish, isStart, type, ...props}) => (
+  <div {...props} />
+))`
   align-items: center;
   background: #c2b280;
   box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.1);
@@ -12,8 +14,8 @@ export const Cell = styled(({ type, ...props }) => <div {...props} />)`
   justify-content: center;
   width: ${CellSize}px;
 
-  ${p => p.type === CellType.Boulder && `
-    &::after {
+  ${p => p.type === Obstacle.Boulder && `
+    &::before {
       background: black;
       border-radius: 50%;
       content: '';
@@ -23,23 +25,23 @@ export const Cell = styled(({ type, ...props }) => <div {...props} />)`
     }
   `}
 
-  ${p => p.type === CellType.Gravel && `
+  ${p => p.type === Obstacle.Gravel && `
     background: silver;
   `}
 
-  ${p => p.type === CellType.StartingLocation && `
+  ${p => p.type === Obstacle.WormholeEntrance && `
+    &::before { content: 'In' }
+  `}
+
+  ${p => p.type === Obstacle.WormholeExit && `
+    &::before { content: 'Out' }
+  `}
+
+  ${p => p.isStart && `
     &::after { content: 'A' }
   `}
 
-  ${p => p.type === CellType.TargetLocation && `
+  ${p => p.isFinish && `
     &::after { content: 'B' }
-  `}
-
-  ${p => p.type === CellType.WormholeEntrance && `
-    &::after { content: 'In' }
-  `}
-
-  ${p => p.type === CellType.WormholeExit && `
-    &::after { content: 'Out' }
   `}
 `;

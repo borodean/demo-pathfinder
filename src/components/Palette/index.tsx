@@ -1,12 +1,12 @@
 import React, { FunctionComponent } from 'react';
 
-import { CellType } from 'config/constants';
+import { Obstacle } from 'config/constants';
 
 import { Cell, Palette } from './styles';
 
 interface Props {
-  currentType: CellType;
-  onCellClick(cellType: CellType): any;
+  currentType: Obstacle;
+  onCellClick(cellType: Obstacle): any;
 }
 
 const PaletteComponent: FunctionComponent<Props> = ({
@@ -14,13 +14,11 @@ const PaletteComponent: FunctionComponent<Props> = ({
   onCellClick
 }) => {
   const orderedTypes = [
-    CellType.Regular,
-    CellType.Gravel,
-    CellType.Boulder,
-    CellType.WormholeEntrance,
-    CellType.WormholeExit,
-    CellType.StartingLocation,
-    CellType.TargetLocation
+    Obstacle.Regular,
+    Obstacle.Gravel,
+    Obstacle.Boulder,
+    Obstacle.WormholeEntrance,
+    Obstacle.WormholeExit
   ];
 
   return (

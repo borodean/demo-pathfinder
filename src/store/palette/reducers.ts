@@ -1,9 +1,9 @@
-import { CellType } from 'config/constants';
+import { Obstacle } from 'config/constants';
 
 import { PaletteAction, PaletteState, SELECT_TYPE } from './types';
 
 export const initialState: PaletteState = {
-  currentType: CellType.Regular
+  currentType: Obstacle.Regular
 };
 
 export const paletteReducer = (state = initialState, action: PaletteAction) => {

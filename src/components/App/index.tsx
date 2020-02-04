@@ -25,8 +25,10 @@ const App: FunctionComponent<Props> = ({
   return (
     <div>
       <Grid
+        finish={grid.finish}
         onDraw={(x, y) => updateCell(x, y, palette.currentType)}
         rows={grid.rows}
+        start={grid.start}
       />
       <Palette
         currentType={palette.currentType}

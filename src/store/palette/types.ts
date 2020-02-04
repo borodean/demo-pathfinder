@@ -1,16 +1,16 @@
 import { Action } from 'redux';
 
-import { CellType } from 'config/constants';
+import { Obstacle } from 'config/constants';
 
 export interface PaletteState {
-  currentType: CellType;
+  currentType: Obstacle;
 }
 
 export const SELECT_TYPE = 'SELECT_TYPE';
 
 interface SelectTypeAction extends Action {
   type: typeof SELECT_TYPE;
-  cellType: CellType;
+  cellType: Obstacle;
 }
 
 export type PaletteAction = SelectTypeAction;
