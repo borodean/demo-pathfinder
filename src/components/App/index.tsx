@@ -25,8 +25,8 @@ const App: FunctionComponent<Props> = ({
   return (
     <div>
       <Grid
-        columns={grid.columns}
         onCellClick={(x, y) => updateCell(x, y, palette.currentType)}
+        rows={grid.rows}
       />
       <Palette
         currentType={palette.currentType}
