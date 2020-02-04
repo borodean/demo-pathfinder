@@ -11,7 +11,7 @@ export const Cell = styled($Cell)`
   transform: scale(1.01);
 
   &:hover {
-    box-shadow: 0 0 0 2px #0f0;
+    box-shadow: inset 0 0 0 2px #0f0;
     z-index: 1;
   }
 `;
