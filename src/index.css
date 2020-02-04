@@ -10,4 +10,5 @@ html {
   background: radial-gradient(circle at center, #163843, #11202c);
   font: 16px/1.25 sans-serif;
   min-height: 100%;
+  user-select: none;
 }
