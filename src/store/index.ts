@@ -1,9 +1,15 @@
-import { createStore } from 'redux';
+import { combineReducers, createStore } from 'redux';
 import { devToolsEnhancer } from 'redux-devtools-extension';
 
-import { applicationReducer } from './reducers';
+import { gridReducer } from './grid/reducers';
+
+const rootReducer = combineReducers({
+  grid: gridReducer
+});
+
+export type AppState = ReturnType<typeof rootReducer>;
 
 const configureStore = () =>
-  createStore(applicationReducer, devToolsEnhancer({}));
+  createStore(rootReducer, devToolsEnhancer({}));
 
 export default configureStore;
