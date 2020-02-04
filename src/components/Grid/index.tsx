@@ -1,21 +1,20 @@
+import { flatMap } from 'lodash';
 import React, { FunctionComponent } from 'react';
 
 import { CellType } from 'config/constants';
 
 import { Cell, Grid } from './styles';
 
-const GridComponent: FunctionComponent = () => {
+interface Props {
+  columns: ReadonlyArray<ReadonlyArray<CellType>>;
+}
+
+const GridComponent: FunctionComponent<Props> = ({ columns }) => {
   return (
-    <Grid width={3}>
-      <Cell type={CellType.Boulder} />
-      <Cell type={CellType.StartingLocation} />
-      <Cell type={CellType.Gravel} />
-      <Cell />
-      <Cell />
-      <Cell type={CellType.WormholeEntrance} />
-      <Cell type={CellType.TargetLocation} />
-      <Cell type={CellType.WormholeExit} />
-      <Cell />
+    <Grid width={columns.length}>
+      {flatMap(columns, (types, x) =>
+        types.map((type, y) => <Cell key={`${x}:${y}`} type={type} />)
+      )}
     </Grid>
   );
 };

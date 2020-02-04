@@ -1,6 +1,10 @@
 import { Action } from 'redux';
 
-export interface GridState {}
+import { CellType } from 'config/constants';
+
+export interface GridState {
+  columns: ReadonlyArray<ReadonlyArray<CellType>>;
+}
 
 export const UPDATE_CELL = 'UPDATE_CELL';
 
