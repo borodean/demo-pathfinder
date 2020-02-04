@@ -7,13 +7,20 @@ import { Cell, Grid } from './styles';
 
 interface Props {
   columns: ReadonlyArray<ReadonlyArray<CellType>>;
+  onCellClick(x: Number, y: Number): any;
 }
 
-const GridComponent: FunctionComponent<Props> = ({ columns }) => {
+const GridComponent: FunctionComponent<Props> = ({ columns, onCellClick }) => {
   return (
     <Grid width={columns.length}>
       {flatMap(columns, (types, x) =>
-        types.map((type, y) => <Cell key={`${x}:${y}`} type={type} />)
+        types.map((type, y) => (
+          <Cell
+            key={`${x}:${y}`}
+            onClick={() => onCellClick(x, y)}
+            type={type}
+          />
+        ))
       )}
     </Grid>
   );

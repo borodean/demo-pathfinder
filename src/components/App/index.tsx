@@ -16,10 +16,18 @@ interface Props {
   updateCell: typeof updateCell;
 }
 
-const App: FunctionComponent<Props> = ({ grid, palette, selectCellType }) => {
+const App: FunctionComponent<Props> = ({
+  grid,
+  palette,
+  selectCellType,
+  updateCell
+}) => {
   return (
     <div>
-      <Grid columns={grid.columns} />
+      <Grid
+        columns={grid.columns}
+        onCellClick={(x, y) => updateCell(x, y, palette.currentType)}
+      />
       <Palette
         currentType={palette.currentType}
         onCellClick={selectCellType}

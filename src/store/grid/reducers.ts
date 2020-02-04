@@ -1,3 +1,4 @@
+import update from 'immutability-helper';
 import { fill, times } from 'lodash';
 
 import { CellType, GridHeight, GridWidth } from 'config/constants';
@@ -11,7 +12,13 @@ export const initialState: GridState = {
 export const gridReducer = (state = initialState, action: GridAction) => {
   switch (action.type) {
     case UPDATE_CELL:
-      return { ...state };
+      return update(state, {
+        columns: {
+          [String(action.x)]: {
+            [String(action.y)]: { $set: action.cellType }
+          }
+        }
+      });
     default:
       return state;
   }
