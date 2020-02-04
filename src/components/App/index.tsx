@@ -25,7 +25,7 @@ const App: FunctionComponent<Props> = ({
   return (
     <div>
       <Grid
-        onCellClick={(x, y) => updateCell(x, y, palette.currentType)}
+        onDraw={(x, y) => updateCell(x, y, palette.currentType)}
         rows={grid.rows}
       />
       <Palette
