@@ -15,5 +15,6 @@ export const Cell = styled(({isCurrent, ...props}) => <$Cell {...props} />)`
 export const Palette = styled.div`
   border: 2px solid #000;
   display: flex;
+  margin: auto;
   width: fit-content;
 `;
