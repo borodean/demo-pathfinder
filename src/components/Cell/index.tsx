@@ -1,10 +1,10 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, HTMLAttributes } from 'react';
 
 import { CellType } from 'config/constants';
 
 import { Cell } from './styles';
 
-type Props = {
+interface Props extends HTMLAttributes<HTMLElement> {
   type?: CellType;
 };
 
