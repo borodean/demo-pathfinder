@@ -7,10 +7,12 @@ import { CellSize } from 'config/constants';
 
 export const Cell = styled($Cell)`
   cursor: pointer;
+  position: relative;
+  transform: scale(1.01);
 
   &:hover {
     box-shadow: 0 0 0 2px green;
-    position: relative;
+    z-index: 1;
   }
 `;
 
