@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { CellSize, Obstacle } from 'config/constants';
+import { CellHeight, CellSize, Obstacle } from 'config/constants';
 
 export const Cell = styled(({isFinish, isStart, type, ...props}) => (
   <div {...props} />
@@ -25,7 +25,7 @@ export const Cell = styled(({isFinish, isStart, type, ...props}) => (
   }
 
   &::before {
-    height: 10px;
+    height: ${CellHeight}px;
     left: 0;
     top: 100%;
     transform: rotateX(-90deg);
@@ -39,12 +39,12 @@ export const Cell = styled(({isFinish, isStart, type, ...props}) => (
     top: 0;
     transform: rotateY(90deg);
     transform-origin: 0 50%;
-    width: 10px;
+    width: ${CellHeight}px;
   }
 
   ${p => p.type === Obstacle.Boulder && `
     background: silver;
-    transform: translateZ(10px);
+    transform: translateZ(${CellHeight}px);
 
     &::before {
       background: white;
