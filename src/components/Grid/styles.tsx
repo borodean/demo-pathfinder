@@ -7,7 +7,6 @@ import { CellSize } from 'config/constants';
 
 export const Cell = styled($Cell)`
   cursor: pointer;
-  float: left;
 
   &:hover {
     box-shadow: 0 0 0 2px green;
@@ -16,7 +15,8 @@ export const Cell = styled($Cell)`
 `;
 
 export const Grid = styled(({ width, ...props }) => <div {...props} />)`
-  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
   width: ${p => CellSize * p.width}px;
 `;
 
