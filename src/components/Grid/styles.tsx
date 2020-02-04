@@ -8,7 +8,6 @@ import { CellSize } from 'config/constants';
 export const Cell = styled($Cell)`
   cursor: pointer;
   position: relative;
-  transform: scale(1.01);
 
   &:hover {
     box-shadow: inset 0 0 0 2px #0f0;
@@ -23,5 +22,7 @@ export const Grid = styled(({ width, ...props }) => <div {...props} />)`
 `;
 
 export const Isometry = styled($Isometry)`
+  box-sizing: content-box;
   margin: auto;
+  padding: 10px 0;
 `;
