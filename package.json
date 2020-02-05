@@ -12,7 +12,6 @@
     "@types/react-dom": "^16.9.0",
     "easystarjs": "^0.4.3",
     "immutability-helper": "^3.0.1",
-    "javascript-astar": "^0.4.1",
     "lodash": "^4.17.15",
     "normalize.css": "^8.0.1",
     "polished": "^3.4.4",
@@ -47,7 +46,6 @@
     ]
   },
   "devDependencies": {
-    "@types/javascript-astar": "^0.0.30",
     "@types/lodash": "^4.14.149",
     "@types/react-redux": "^7.1.7",
     "@types/redux": "^3.6.0",
