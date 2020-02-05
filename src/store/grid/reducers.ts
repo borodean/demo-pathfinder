@@ -1,5 +1,5 @@
 import update from 'immutability-helper';
-import { fill, times } from 'lodash';
+import { fill, isMatch, times } from 'lodash';
 
 import { GridHeight, GridWidth, Obstacle } from 'config/constants';
 
@@ -20,6 +20,9 @@ export const initialState: GridState = {
 export const gridReducer = (state = initialState, action: GridAction) => {
   switch (action.type) {
     case UPDATE_CELL:
+      if (isMatch(action, state.start) || isMatch(action, state.finish)) {
+        return state;
+      }
       return update(state, {
         rows: {
           [String(action.y)]: {
