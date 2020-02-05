@@ -95,6 +95,7 @@ export const Isometry = styled($Isometry).attrs({ height: 1, width: 1 })`
 export const Palette = styled.div`
   display: flex;
   margin: 20px auto 0;
+  transform: translate3d(0, 0, 0);
   width: fit-content;
 `;
 
