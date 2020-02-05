@@ -49,6 +49,7 @@ export const Step = styled(({ x, y, ...props }) => <div {...props} />)`
   pointer-events: none;
   position: absolute;
   top: ${p => p.y * CellSize}px;
+  transform: translateZ(0.01px); // safari rendering fix
   width: ${p => CellSize}px;
   z-index: 2;
 `;
