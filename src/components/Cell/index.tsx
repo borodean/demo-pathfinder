@@ -10,8 +10,17 @@ interface Props extends HTMLAttributes<HTMLElement> {
   type?: Obstacle;
 };
 
-const CellComponent: FunctionComponent<Props> = props => {
-  return <Cell {...props} />;
+const CellComponent: FunctionComponent<Props> = ({
+  isFinish,
+  isStart,
+  ...props
+}) => {
+  return (
+    <Cell {...props}>
+      {isStart && 'A'}
+      {isFinish && 'B'}
+    </Cell>
+  );
 };
 
 CellComponent.defaultProps = {

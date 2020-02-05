@@ -6,8 +6,12 @@ import { CellHeight, CellSize, Obstacle } from 'config/constants';
 export const Cell = styled(({isFinish, isStart, type, ...props}) => (
   <div {...props} />
 ))`
+  font-size: ${CellSize}px;
+  font-weight: bold;
   height: ${CellSize}px;
+  line-height: ${CellSize}px;
   position: relative;
+  text-align: center;
   width: ${CellSize}px;
 
   &,
@@ -43,57 +47,67 @@ export const Cell = styled(({isFinish, isStart, type, ...props}) => (
   }
 
   ${p => p.type === Obstacle.Boulder && `
-    background: silver;
+    background: #acacac;
     transform: translateZ(${CellHeight}px);
 
     &::before {
-      background: white;
+      background: #5c5c5c;
       transform: rotateX(-90deg) scaleY(2);
     }
 
     &::after {
-      background: gray;
+      background: #303030;
       transform: rotateY(90deg) scaleX(2);
     }
   `}
 
   ${p => p.type === Obstacle.Gravel && `
-    background: gray;
+    background: #949494;
 
     &::before {
-      background: silver;
+      background: #5c5c5c;
     }
 
     &::after {
-      background: black;
+      background: #303030;
     }
   `}
 
   ${p => p.type === Obstacle.Regular && `
-    background: orange;
+    background: #a3581f;
 
     &::before {
-      background: yellow;
+      background: #7f4010;
     }
 
     &::after {
-      background: red;
+      background: #5f240a;
     }
   `}
 
   ${p => p.type === Obstacle.WormholeEntrance && `
-    &::before { content: 'In' }
+    background: red;
+    transform: translateZ(${-CellHeight}px);
+
+    &::before {
+      transform: rotateX(-90deg) scaleY(0);
+    }
+
+    &::after {
+      transform: rotateY(90deg) scaleX(0);
+    }
   `}
 
   ${p => p.type === Obstacle.WormholeExit && `
-    &::before { content: 'Out' }
-  `}
+    background: blue;
+    transform: translateZ(${-CellHeight}px);
 
-  ${p => p.isStart && `
-    &::after { content: 'A' }
-  `}
+    &::before {
+      transform: rotateX(-90deg) scaleY(0);
+    }
 
-  ${p => p.isFinish && `
-    &::after { content: 'B' }
+    &::after {
+      transform: rotateY(90deg) scaleX(0);
+    }
   `}
 `;

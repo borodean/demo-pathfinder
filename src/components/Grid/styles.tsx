@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import $Cell from 'components/Cell';
 import $Isometry from 'components/Isometry';
-import { CellSize } from 'config/constants';
+import { CellHeight, CellSize } from 'config/constants';
 
 export const Cell = styled($Cell)`
   cursor: pointer;
@@ -24,5 +24,5 @@ export const Grid = styled(({ width, ...props }) => <div {...props} />)`
 export const Isometry = styled($Isometry)`
   box-sizing: content-box;
   margin: auto;
-  padding: 10px 0;
+  padding: ${CellHeight}px 0;
 `;
