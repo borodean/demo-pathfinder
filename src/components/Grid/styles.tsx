@@ -18,6 +18,7 @@ export const Cell = styled($Cell)`
 export const Grid = styled(({ width, ...props }) => <div {...props} />)`
   display: flex;
   flex-wrap: wrap;
+  position: relative;
   width: ${p => CellSize * p.width}px;
 `;
 
@@ -25,4 +26,16 @@ export const Isometry = styled($Isometry)`
   box-sizing: content-box;
   margin: auto;
   padding: ${CellHeight}px 0;
+`;
+
+export const Step = styled(({ x, y, ...props }) => <div {...props} />)`
+  background: lime;
+  height: ${p => CellSize}px;
+  left: ${p => p.x * CellSize}px;
+  opacity: 0.5;
+  pointer-events: none;
+  position: absolute;
+  top: ${p => p.y * CellSize}px;
+  width: ${p => CellSize}px;
+  z-index: 2;
 `;

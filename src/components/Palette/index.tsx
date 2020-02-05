@@ -12,11 +12,13 @@ import { Button, Group, Isometry, Palette, Title } from './styles';
 
 interface Props {
   activeTool: PaletteTool;
+  onFind(): any;
   onSelectTool(tool: PaletteTool): any;
 }
 
 const PaletteComponent: FunctionComponent<Props> = ({
   activeTool,
+  onFind,
   onSelectTool
 }) => {
   const obstacles = [
@@ -50,18 +52,27 @@ const PaletteComponent: FunctionComponent<Props> = ({
         </Group>
       ))}
       <Group>
-        <Button isPressed={activeTool === START_LOCATION} onClick={() => onSelectTool(START_LOCATION)}>
+        <Button
+          isPressed={activeTool === START_LOCATION}
+          onClick={() => onSelectTool(START_LOCATION)}
+        >
           <Isometry>
             <Cell isStart />
           </Isometry>
           <Title>Start Location</Title>
         </Button>
-        <Button isPressed={activeTool === FINISH_LOCATION} onClick={() => onSelectTool(FINISH_LOCATION)}>
+        <Button
+          isPressed={activeTool === FINISH_LOCATION}
+          onClick={() => onSelectTool(FINISH_LOCATION)}
+        >
           <Isometry>
             <Cell isFinish />
           </Isometry>
           <Title>Finish Location</Title>
         </Button>
+      </Group>
+      <Group>
+        <Button isPrimary onClick={onFind}>Find</Button>
       </Group>
     </Palette>
   );

@@ -1,11 +1,10 @@
-import { rgba } from 'polished';
 import React from 'react';
 import styled from 'styled-components';
 
-import { CellHeight } from 'config/constants';
+import { CellHeight, CellSize } from 'config/constants';
 import $Isometry from 'components/Isometry';
 
-export const Button = styled(({ isPressed, ...props }) => (
+export const Button = styled(({ isPressed, isPrimary, ...props }) => (
   <button {...props} />
 )).attrs({
   type: 'button'
@@ -29,8 +28,29 @@ export const Button = styled(({ isPressed, ...props }) => (
     box-shadow: inset 0 2px 2px #1976d2;
     color: #bbdefb;
     z-index: 2;
+  ` : p.isPrimary ? `
+    background: linear-gradient(#ffb74d, #ffa726);
+    border-color: #fb8c00;
+    box-shadow: inset 0 1px #ffe0b2;
+    color: #fff3e0;
+    width: ${CellSize * Math.sqrt(2) + 10}px;
+
+    &:hover,
+    &:focus {
+      background: linear-gradient(#ffcc80, #ffb74d);
+      border-color: #ffa726;
+      box-shadow: inset 0 1px #fff3e0;
+    }
+
+    &:active {
+      background: linear-gradient(#ffa726, #fb8c00);
+      border-color: #f57c00;
+      box-shadow: inset 0 2px 2px #f57c00;
+      color: #ffe0b2;
+    }
   ` : `
-    &:hover {
+    &:hover,
+    &:focus {
       background: linear-gradient(#b0bec5, #90a4ae);
       border-color: #78909c;
       box-shadow: inset 0 1px #eceff1;

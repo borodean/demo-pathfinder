@@ -8,11 +8,13 @@ import {
   GridState,
   UPDATE_CELL,
   UPDATE_FINISH,
+  UPDATE_PATH,
   UPDATE_START
 } from './types';
 
 export const initialState: GridState = {
   finish: { x: GridWidth - 1, y: GridHeight - 1 },
+  path: null,
   rows: times(GridHeight, () => fill(Array(GridWidth), Obstacle.Regular)),
   start: { x: 0, y: 0 }
 };
@@ -38,6 +40,10 @@ export const gridReducer = (state = initialState, action: GridAction) => {
             [String(action.x)]: { $set: Obstacle.Regular }
           }
         }
+      });
+    case UPDATE_PATH:
+      return update(state, {
+        path: { $set: action.path }
       });
     case UPDATE_START:
       return update(state, {

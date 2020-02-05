@@ -4,7 +4,12 @@ import { connect } from 'react-redux';
 import Grid from 'components/Grid';
 import Palette from 'components/Palette';
 import { AppState } from 'store';
-import { updateCell, updateFinish, updateStart } from 'store/grid/actions';
+import {
+  updateCell,
+  updateFinish,
+  updatePath,
+  updateStart
+} from 'store/grid/actions';
 import { GridState } from 'store/grid/types';
 import { selectTool } from 'store/palette/actions';
 import {
@@ -12,6 +17,7 @@ import {
   PaletteState,
   START_LOCATION
 } from 'store/palette/types';
+import { findPath } from 'utils/path';
 
 interface Props {
   grid: GridState;
@@ -19,6 +25,7 @@ interface Props {
   selectTool: typeof selectTool;
   updateCell: typeof updateCell;
   updateFinish: typeof updateFinish;
+  updatePath: typeof updatePath;
   updateStart: typeof updateStart;
 }
 
@@ -28,6 +35,7 @@ const App: FunctionComponent<Props> = ({
   selectTool,
   updateCell,
   updateFinish,
+  updatePath,
   updateStart
 }) => {
   return (
@@ -43,11 +51,16 @@ const App: FunctionComponent<Props> = ({
             updateCell(x, y, palette.activeTool);
           }
         }}
+        path={grid.path}
         rows={grid.rows}
         start={grid.start}
       />
       <Palette
         activeTool={palette.activeTool}
+        onFind={() => {
+          const mutableRows = grid.rows.map(cols => cols.slice());
+          findPath(mutableRows, grid.start, grid.finish, updatePath);
+        }}
         onSelectTool={selectTool}
       />
     </div>
@@ -61,5 +74,5 @@ const mapStateToProps = (state: AppState) => ({
 
 export default connect(
   mapStateToProps,
-  { selectTool, updateCell, updateFinish, updateStart }
+  { selectTool, updateCell, updateFinish, updatePath, updateStart }
 )(App);

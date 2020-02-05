@@ -3,18 +3,20 @@ import React, { FunctionComponent, useState } from 'react';
 
 import { Obstacle } from 'config/constants';
 
-import { Cell, Grid, Isometry } from './styles';
+import { Cell, Grid, Isometry, Step } from './styles';
 
 interface Props {
-  finish: {x: number; y: number};
+  finish: { x: number; y: number };
   onDraw(x: number, y: number): any;
+  path: ReadonlyArray<{ x: number; y: number }> | null;
   rows: ReadonlyArray<ReadonlyArray<Obstacle>>;
-  start: {x: number; y: number};
+  start: { x: number; y: number };
 }
 
 const GridComponent: FunctionComponent<Props> = ({
   finish,
   onDraw,
+  path,
   rows,
   start
 }) => {
@@ -46,8 +48,8 @@ const GridComponent: FunctionComponent<Props> = ({
         {flatMap(rows, (types, y) =>
           types.map((type, x) => (
             <Cell
-              isFinish={isEqual({x, y}, finish)}
-              isStart={isEqual({x, y}, start)}
+              isFinish={isEqual({ x, y }, finish)}
+              isStart={isEqual({ x, y }, start)}
               key={`${x}:${y}`}
               onMouseDown={createOnMouseDown(x, y)}
               onMouseMove={createOnMouseMove(x, y)}
@@ -55,6 +57,7 @@ const GridComponent: FunctionComponent<Props> = ({
             />
           ))
         )}
+        {path && path.map(({ x, y }) => <Step key={`${x}:${y}`} x={x} y={y} />)}
       </Grid>
     </Isometry>
   );
