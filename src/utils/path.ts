@@ -96,5 +96,9 @@ export const findPathWithPortals = async (
 
   const portalPath = [...shortestPathToEntrance, ...shortestPathFromExit];
 
+  if (!regularPath) {
+    return portalPath;
+  }
+
   return findShortestPath(rows, [regularPath, portalPath]);
 };
