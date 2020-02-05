@@ -31,6 +31,7 @@ export const Isometry = styled($Isometry)`
 export const NotFound = styled.div`
   color: lime;
   left: 50%;
+  pointer-events: none;
   position: absolute;
   top: 50%;
   transform: translate3d(-50%, -50%, 500px);
