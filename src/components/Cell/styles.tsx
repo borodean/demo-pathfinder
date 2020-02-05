@@ -6,6 +6,7 @@ import { CellHeight, CellSize, Obstacle } from 'config/constants';
 export const Cell = styled(({isFinish, isStart, type, ...props}) => (
   <div {...props} />
 ))`
+  color: #fff;
   font-size: ${CellSize}px;
   font-weight: bold;
   height: ${CellSize}px;

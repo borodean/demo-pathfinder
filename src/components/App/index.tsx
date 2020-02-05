@@ -4,35 +4,51 @@ import { connect } from 'react-redux';
 import Grid from 'components/Grid';
 import Palette from 'components/Palette';
 import { AppState } from 'store';
-import { updateCell } from 'store/grid/actions';
+import { updateCell, updateFinish, updateStart } from 'store/grid/actions';
 import { GridState } from 'store/grid/types';
-import { selectCellType } from 'store/palette/actions';
-import { PaletteState } from 'store/palette/types';
+import { selectTool } from 'store/palette/actions';
+import {
+  FINISH_LOCATION,
+  PaletteState,
+  START_LOCATION
+} from 'store/palette/types';
 
 interface Props {
   grid: GridState;
   palette: PaletteState;
-  selectCellType: typeof selectCellType;
+  selectTool: typeof selectTool;
   updateCell: typeof updateCell;
+  updateFinish: typeof updateFinish;
+  updateStart: typeof updateStart;
 }
 
 const App: FunctionComponent<Props> = ({
   grid,
   palette,
-  selectCellType,
-  updateCell
+  selectTool,
+  updateCell,
+  updateFinish,
+  updateStart
 }) => {
   return (
     <div>
       <Grid
         finish={grid.finish}
-        onDraw={(x, y) => updateCell(x, y, palette.currentType)}
+        onDraw={(x, y) => {
+          if (palette.activeTool === START_LOCATION) {
+            updateStart(x, y);
+          } else if (palette.activeTool === FINISH_LOCATION) {
+            updateFinish(x, y);
+          } else {
+            updateCell(x, y, palette.activeTool);
+          }
+        }}
         rows={grid.rows}
         start={grid.start}
       />
       <Palette
-        currentType={palette.currentType}
-        onCellClick={selectCellType}
+        activeTool={palette.activeTool}
+        onSelectTool={selectTool}
       />
     </div>
   );
@@ -45,5 +61,5 @@ const mapStateToProps = (state: AppState) => ({
 
 export default connect(
   mapStateToProps,
-  { selectCellType, updateCell }
+  { selectTool, updateCell, updateFinish, updateStart }
 )(App);

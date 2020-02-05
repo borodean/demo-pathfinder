@@ -2,19 +2,24 @@ import React, { FunctionComponent } from 'react';
 
 import Cell from 'components/Cell';
 import { Obstacle } from 'config/constants';
+import {
+  FINISH_LOCATION,
+  PaletteTool,
+  START_LOCATION
+} from 'store/palette/types';
 
 import { Button, Group, Isometry, Palette, Title } from './styles';
 
 interface Props {
-  currentType: Obstacle;
-  onCellClick(cellType: Obstacle): any;
+  activeTool: PaletteTool;
+  onSelectTool(tool: PaletteTool): any;
 }
 
 const PaletteComponent: FunctionComponent<Props> = ({
-  currentType,
-  onCellClick
+  activeTool,
+  onSelectTool
 }) => {
-  const groups = [
+  const obstacles = [
     [
       { type: Obstacle.Regular, title: 'Dirt' },
       { type: Obstacle.Gravel, title: 'Gravel' },
@@ -28,13 +33,13 @@ const PaletteComponent: FunctionComponent<Props> = ({
 
   return (
     <Palette>
-      {groups.map((group, index) => (
+      {obstacles.map((group, index) => (
         <Group key={index}>
           {group.map(tool => (
             <Button
-              isPressed={tool.type === currentType}
+              isPressed={tool.type === activeTool}
               key={tool.type}
-              onClick={() => onCellClick(tool.type)}
+              onClick={() => onSelectTool(tool.type)}
             >
               <Isometry>
                 <Cell type={tool.type} />
@@ -44,6 +49,20 @@ const PaletteComponent: FunctionComponent<Props> = ({
           ))}
         </Group>
       ))}
+      <Group>
+        <Button isPressed={activeTool === START_LOCATION} onClick={() => onSelectTool(START_LOCATION)}>
+          <Isometry>
+            <Cell isStart />
+          </Isometry>
+          <Title>Start Location</Title>
+        </Button>
+        <Button isPressed={activeTool === FINISH_LOCATION} onClick={() => onSelectTool(FINISH_LOCATION)}>
+          <Isometry>
+            <Cell isFinish />
+          </Isometry>
+          <Title>Finish Location</Title>
+        </Button>
+      </Group>
     </Palette>
   );
 };

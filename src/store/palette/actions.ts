@@ -1,8 +1,8 @@
 import { Obstacle } from 'config/constants';
 
-import { PaletteAction, SELECT_TYPE } from './types';
+import { PaletteAction, PaletteTool, SELECT_TOOL } from './types';
 
-export const selectCellType = (cellType: Obstacle): PaletteAction => ({
-  type: SELECT_TYPE,
-  cellType
+export const selectTool = (tool: PaletteTool): PaletteAction => ({
+  type: SELECT_TOOL,
+  tool
 });

@@ -1,17 +1,17 @@
 import { Obstacle } from 'config/constants';
 
-import { PaletteAction, PaletteState, SELECT_TYPE } from './types';
+import { PaletteAction, PaletteState, SELECT_TOOL } from './types';
 
 export const initialState: PaletteState = {
-  currentType: Obstacle.Regular
+  activeTool: Obstacle.Regular
 };
 
 export const paletteReducer = (state = initialState, action: PaletteAction) => {
   switch (action.type) {
-    case SELECT_TYPE:
+    case SELECT_TOOL:
       return {
         ...state,
-        currentType: action.cellType
+        activeTool: action.tool
       };
     default:
       return state;
