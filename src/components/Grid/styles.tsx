@@ -33,7 +33,7 @@ export const NotFound = styled.div`
   left: 50%;
   position: absolute;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 500px);
 `;
 
 export const OffsetParent = styled.div`
