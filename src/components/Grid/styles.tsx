@@ -28,6 +28,18 @@ export const Isometry = styled($Isometry)`
   padding: ${CellHeight}px 0;
 `;
 
+export const NotFound = styled.div`
+  color: lime;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+export const OffsetParent = styled.div`
+  position: relative;
+`;
+
 export const Step = styled(({ x, y, ...props }) => <div {...props} />)`
   background: lime;
   height: ${p => CellSize}px;

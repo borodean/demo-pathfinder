@@ -53,6 +53,7 @@ const App: FunctionComponent<Props> = ({
         }}
         path={grid.path}
         rows={grid.rows}
+        shouldShowPath={grid.shouldShowPath}
         start={grid.start}
       />
       <Palette

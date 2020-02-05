@@ -16,6 +16,7 @@ export const initialState: GridState = {
   finish: { x: GridWidth - 1, y: GridHeight - 1 },
   path: null,
   rows: times(GridHeight, () => fill(Array(GridWidth), Obstacle.Regular)),
+  shouldShowPath: false,
   start: { x: 0, y: 0 }
 };
 
@@ -26,35 +27,36 @@ export const gridReducer = (state = initialState, action: GridAction) => {
         return state;
       }
       return update(state, {
-        path: { $set: null },
         rows: {
           [String(action.y)]: {
             [String(action.x)]: { $set: action.cellType }
           }
-        }
+        },
+        shouldShowPath: { $set: false }
       });
     case UPDATE_FINISH:
       return update(state, {
         finish: { $set: { x: action.x, y: action.y } },
-        path: { $set: null },
-        rows: {
-          [String(action.y)]: {
-            [String(action.x)]: { $set: Obstacle.Regular }
-          }
-        }
-      });
-    case UPDATE_PATH:
-      return update(state, {
-        path: { $set: action.path }
-      });
-    case UPDATE_START:
-      return update(state, {
-        path: { $set: null },
         rows: {
           [String(action.y)]: {
             [String(action.x)]: { $set: Obstacle.Regular }
           }
         },
+        shouldShowPath: { $set: false }
+      });
+    case UPDATE_PATH:
+      return update(state, {
+        path: { $set: action.path },
+        shouldShowPath: { $set: true }
+      });
+    case UPDATE_START:
+      return update(state, {
+        rows: {
+          [String(action.y)]: {
+            [String(action.x)]: { $set: Obstacle.Regular }
+          }
+        },
+        shouldShowPath: { $set: false },
         start: { $set: { x: action.x, y: action.y } }
       });
     default:

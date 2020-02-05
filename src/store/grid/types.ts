@@ -6,6 +6,7 @@ export interface GridState {
   finish: { x: number; y: number };
   path: ReadonlyArray<{ x: number; y: number }> | null;
   rows: ReadonlyArray<ReadonlyArray<Obstacle>>;
+  shouldShowPath: boolean;
   start: { x: number; y: number };
 }
 
