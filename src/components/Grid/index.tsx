@@ -6,10 +6,10 @@ import { Obstacle } from 'config/constants';
 import { Cell, Grid, Isometry } from './styles';
 
 interface Props {
-  finish: {x: Number; y: Number};
-  onDraw(x: Number, y: Number): any;
+  finish: {x: number; y: number};
+  onDraw(x: number, y: number): any;
   rows: ReadonlyArray<ReadonlyArray<Obstacle>>;
-  start: {x: Number; y: Number};
+  start: {x: number; y: number};
 }
 
 const GridComponent: FunctionComponent<Props> = ({
@@ -20,13 +20,13 @@ const GridComponent: FunctionComponent<Props> = ({
 }) => {
   const [isDrawing, setIsDrawing] = useState(false);
 
-  const createOnMouseDown = (x: Number, y: Number) => () => {
+  const createOnMouseDown = (x: number, y: number) => () => {
     setIsDrawing(true);
     onDraw(x, y);
     document.addEventListener('mouseup', onMouseUp);
   };
 
-  const createOnMouseMove = (x: Number, y: Number) => () => {
+  const createOnMouseMove = (x: number, y: number) => () => {
     if (isDrawing) {
       onDraw(x, y);
     }
