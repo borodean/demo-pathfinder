@@ -1,8 +1,9 @@
 import React, { FunctionComponent } from 'react';
 
+import Cell from 'components/Cell';
 import { Obstacle } from 'config/constants';
 
-import { Cell, Palette } from './styles';
+import { Button, Group, Isometry, Palette, Title } from './styles';
 
 interface Props {
   currentType: Obstacle;
@@ -13,23 +14,35 @@ const PaletteComponent: FunctionComponent<Props> = ({
   currentType,
   onCellClick
 }) => {
-  const orderedTypes = [
-    Obstacle.Regular,
-    Obstacle.Gravel,
-    Obstacle.Boulder,
-    Obstacle.WormholeEntrance,
-    Obstacle.WormholeExit
+  const groups = [
+    [
+      { type: Obstacle.Regular, title: 'Dirt' },
+      { type: Obstacle.Gravel, title: 'Gravel' },
+      { type: Obstacle.Boulder, title: 'Boulder' }
+    ],
+    [
+      { type: Obstacle.WormholeEntrance, title: 'Wormhole Entrance' },
+      { type: Obstacle.WormholeExit, title: 'Wormhole Exit' }
+    ]
   ];
 
   return (
     <Palette>
-      {orderedTypes.map(type => (
-        <Cell
-          isCurrent={type === currentType}
-          key={type}
-          onClick={() => onCellClick(type)}
-          type={type}
-        />
+      {groups.map((group, index) => (
+        <Group key={index}>
+          {group.map(tool => (
+            <Button
+              isPressed={tool.type === currentType}
+              key={tool.type}
+              onClick={() => onCellClick(tool.type)}
+            >
+              <Isometry>
+                <Cell type={tool.type} />
+              </Isometry>
+              <Title>{tool.title}</Title>
+            </Button>
+          ))}
+        </Group>
       ))}
     </Palette>
   );
