@@ -17,7 +17,7 @@ import {
   PaletteState,
   START_LOCATION
 } from 'store/palette/types';
-import { findPath } from 'utils/path';
+import { findPathWithPortals } from 'utils/path';
 
 interface Props {
   grid: GridState;
@@ -57,9 +57,14 @@ const App: FunctionComponent<Props> = ({
       />
       <Palette
         activeTool={palette.activeTool}
-        onFind={() => {
+        onFind={async () => {
           const mutableRows = grid.rows.map(cols => cols.slice());
-          findPath(mutableRows, grid.start, grid.finish, updatePath);
+          const path = await findPathWithPortals(
+            mutableRows,
+            grid.start,
+            grid.finish
+          );
+          updatePath(path);
         }}
         onSelectTool={selectTool}
       />
