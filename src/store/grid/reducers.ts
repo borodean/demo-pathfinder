@@ -26,6 +26,7 @@ export const gridReducer = (state = initialState, action: GridAction) => {
         return state;
       }
       return update(state, {
+        path: { $set: null },
         rows: {
           [String(action.y)]: {
             [String(action.x)]: { $set: action.cellType }
@@ -35,6 +36,7 @@ export const gridReducer = (state = initialState, action: GridAction) => {
     case UPDATE_FINISH:
       return update(state, {
         finish: { $set: { x: action.x, y: action.y } },
+        path: { $set: null },
         rows: {
           [String(action.y)]: {
             [String(action.x)]: { $set: Obstacle.Regular }
@@ -47,12 +49,13 @@ export const gridReducer = (state = initialState, action: GridAction) => {
       });
     case UPDATE_START:
       return update(state, {
-        start: { $set: { x: action.x, y: action.y } },
+        path: { $set: null },
         rows: {
           [String(action.y)]: {
             [String(action.x)]: { $set: Obstacle.Regular }
           }
-        }
+        },
+        start: { $set: { x: action.x, y: action.y } }
       });
     default:
       return state;
